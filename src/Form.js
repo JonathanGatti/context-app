@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import {LanguageContext} from './contexts/LanguageContext'
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -38,20 +37,17 @@ const words = {
 
 function Form() {
   const classes = useStyles();
-  const {language, setLanguage} = useContext(LanguageContext);
+  const {language, changeLanguage} = useContext(LanguageContext);
   const {signIn, email, password, remember} = words[language];
 
-  const onChange = (e) => {
-    setLanguage(e.target.value)
-  }
   return (
     <main className={classes.main}>
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography variant='h5'>Sign in</Typography>
-        <Select value={language} onChange={onChange}>
+        <Typography variant='h5'>{signIn}</Typography>
+        <Select value={language} onChange={changeLanguage}>
           <MenuItem value='english'>English</MenuItem>
           <MenuItem value='french'>French</MenuItem>
           <MenuItem value='spanish'>Spanish</MenuItem>
